@@ -11,7 +11,7 @@ module.exports = function (config) {
     frameworks: ['parallel', 'mocha', 'chai'],
 
     // plugins
-    plugins: ['karma-mocha', 'karma-chai', 'karma-browserstack-launcher', 'karma-parallel', 'karma-htmlfile-reporter'],
+    plugins: ['karma-mocha', 'karma-chai', 'karma-browserstack-launcher', 'karma-parallel'],
 
     client: {
       mocha: {
@@ -31,7 +31,7 @@ module.exports = function (config) {
       'tests/*.js'
     ],
 
-    browserConsoleLogOptions: { level: "log", format: "%b %T: %m", terminal: true },
+    browserConsoleLogOptions: { level: 'log', format: '%b %T: %m', terminal: true },
 
     path: 'output/browser_console.log',
 
@@ -45,7 +45,7 @@ module.exports = function (config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'html', 'dots', 'BrowserStack'],
+    reporters: ['dots', 'BrowserStack'],
     // reporters: ['progress', 'BrowserStack'],
     htmlReporter: {
       outputFile: 'output/karma_test_summary.html',
@@ -59,21 +59,14 @@ module.exports = function (config) {
       showOnlyFailed: false
     },
 
-    // bs-local.com works for iOS, Android and Desktop browsers on BrowserStack.
-    // Equivalent of localhost on desktop test runs.
-    // Change this to localhost if not running on BrowserStack
     hostname: 'localhost',
     // web server port
     port: 9876,
-
-
     // enable / disable colors in the output (reporters and logs)
     colors: true,
-
-
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    //logLevel: config.LOG_DISABLE,
+    // logLevel: config.LOG_DISABLE,
     logLevel: config.LOG_DEBUG,
 
     // enable / disable watching file and executing tests whenever any file changes
@@ -83,15 +76,11 @@ module.exports = function (config) {
       username: process.env.BROWSERSTACK_USERNAME,
       accessKey: process.env.BROWSERSTACK_KEY,
       retryLimit: 0,
-      // startTunnel: false,
-      // tunnelIdentifier: 'mykarmatest',
-      // forcelocal: true,
       build: 'Karma JS suites',
       name: 'Karma JS test suite',
       project: 'BrowserStack Sample with Karma Mocha Chai',
       apiClientEndpoint: 'https://api.browserstack.com'
     },
-
 
     // define BrowserStack browsers
     customLaunchers: {
@@ -102,8 +91,6 @@ module.exports = function (config) {
         os: 'OS X',
         os_version: 'High Sierra',
         forcelocal: true
-        //video: false,
-
       },
       bs_pixel: {
         base: 'BrowserStack',
@@ -111,14 +98,12 @@ module.exports = function (config) {
         real_mobile: true,
         os: 'Android',
         os_version: '8.0'
-        //video: false,
       },
       bs_iphone8: {
         base: 'BrowserStack',
         device: 'iPhone 8',
         real_mobile: true,
         os: 'iOS',
-        //video: false,
         os_version: '11.0'
       },
       bs_chrome_win10: {
@@ -127,7 +112,6 @@ module.exports = function (config) {
         browser_version: '79',
         os: 'Windows',
         os_version: '10'
-        //video: false,
       },
       bs_ie_win81: {
         base: 'BrowserStack',
@@ -135,19 +119,17 @@ module.exports = function (config) {
         browser_version: '11',
         os: 'Windows',
         os_version: '8.1'
-        //video: false,
       }
     },
     retryLimit: 0,
     captureTimeout: 3e5,
     browserDisconnectTolerance: 0,
     browserDisconnectTimeout: 3e5,
-    browserSocketTimeout: 120000,
+    browserSocketTimeout: 1.2e5,
     browserNoActivityTimeout: 3e5,
     concurrency: 5, // concurrency value will start x browsers / devices at a time on BrowserStack where x is the concurrency value
     reportSlowerThan: 60000,
     browsers: ['bs_firefox_mac', 'bs_pixel', 'bs_iphone8', 'bs_chrome_win10', 'bs_ie_win81'],
-    //browsers: ['bs_iphone8'],
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
 
