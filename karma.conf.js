@@ -23,7 +23,7 @@ module.exports = function (config) {
     },
 
     parallelOptions: {
-      executors: 4,
+      executors: 1,
       shardStrategy: 'round-robin'
     },
     // list of files / patterns to load in the browser
@@ -85,7 +85,7 @@ module.exports = function (config) {
       // startTunnel: false,
       // tunnelIdentifier: 'mykarmatest',
       // forcelocal: true,
-      build: 'Karma JS suites',
+      build: 'Karma JS suite',
       name: 'Karma JS test suite',
       project: 'BrowserStack Sample with Karma Mocha Chai',
       apiClientEndpoint: 'https://api.browserstack.com',
